@@ -5,6 +5,8 @@ import Posts from "./components/posts/Posts";
 import FullUser from "./components/users/FullUser";
 import FullPost from "./components/posts/FullPost";
 import {useLocation} from "react-router-dom";
+import PostContainer from "./components/posts/PostContainer";
+import UserContainer from "./components/users/UserContainer";
 
 export function withRouter(Children) {
     return (props) => {
@@ -35,18 +37,15 @@ class App extends Component {
 
                 <div>
                     <Routes>
-                        <Route path={"/users"} element={<Users/>}>
-                            <Route path={`/users/:id`}
-                                   // render={(props) => {
-                                   //     let {match: {params: {id}}} = props;
-                                   //
-                                   //     return (<FullUser key={id}/>)
-                                   // }}
-                                element={<FullUser/>}
-                            />
+                        <Route path="/users/" element={<UserContainer/>}>
+                            <Route index element={<Users/>}/>
+                            <Route path="*" element={<Users/>}/>
+                            <Route path=":id" element={<FullUser/>}/>
                         </Route>
-                        <Route path={"/posts"} element={<Posts/>}>
-                            <Route path={`/posts/:id`} element={<FullPost key={this.props.match.params.id}/>}/>
+                        <Route path="/posts/" element={<PostContainer/>}>
+                            <Route index element={<Posts/>}/>
+                            <Route path="*" element={<Posts/>}/>
+                            <Route path=":id" element={<FullPost/>}/>
                         </Route>
                     </Routes>
                 </div>
