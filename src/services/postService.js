@@ -4,6 +4,7 @@ export default class PostService{
     async getPosts(){
         return await fetch(this.url)
             .then(value => value.json())
+            .then(value => value.filter(item => item.id < 11))
     }
 
     async getPostById(id){
