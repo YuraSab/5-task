@@ -1,6 +1,13 @@
 import React, {Component} from 'react';
 import PostService from "../../services/postService";
-import {withRouter} from "react-router-dom";
+import {useParams} from "react-router-dom";
+
+export function withRouter(Children){
+    return(props) => {
+        const match = {params: useParams()};
+        return <Children {...props} match={match}/>
+    }
+}
 
 class FullPost extends Component {
 
@@ -18,6 +25,7 @@ class FullPost extends Component {
     render() {
 
         let {fullPost} = this.state;
+        console.log(this.props);
 
         return (
             <div>

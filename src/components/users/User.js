@@ -1,19 +1,19 @@
-import React, {Component} from 'react';
-import {Link, withRouter} from "react-router-dom";
+import React from 'react';
+import {Link, useLocation} from "react-router-dom";
 
-class User extends Component {
-    render() {
 
-        let {item, match: {url}} = this.props;
+export default function User(props) {
 
-        console.log(this.props);
+    // console.log(useLocation);
+    // const location = useLocation();
 
-        return (
-            <div>
-                {item.id}. {item.name} - <Link to={`${url}/${item.id}`}>Details</Link>
-            </div>
-        );
-    }
-}
+    let {item} = props;
 
-export default withRouter(User);
+    console.log(props);
+
+    return (
+        <div>
+            {item.id}. {item.name} - <Link to={`${item.id}`}>Details</Link>
+        </div>
+    );
+};
